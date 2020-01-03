@@ -1,0 +1,25 @@
+.bg-login{
+	background: url(img/fondo-control-de-acceso.jpg) ;
+	background-repeat: no-repeat ;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+.feather {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+.divider{
+	padding-bottom: 2px;
+	border-bottom: 0.3px #000 solid;
+}
+.depart{
+	content: url(img/departamento.png);
+	width: 20px;
+	height: 20px;
+	color: blue;
+	vertical-align: middle;
+}
+textarea{
+	resize: none;
+}
