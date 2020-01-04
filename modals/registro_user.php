@@ -5,7 +5,7 @@
 		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
 		        	<h4 class="modal-title">Formulario de registro de usuarios</h4>
 		      	</div>
-		      	<form action="" method="POST">
+		      	<form action="<?= _BASE_URL_?>script/registro_user.php" method="POST">
 			      	<div class="modal-body">
 			      		<div class="row text-center">
 			      			<div class="col-sm-3 col-md-3 form-group">
@@ -48,7 +48,17 @@
 				        	</div>
 			      		</div>
 			      		<div class="row text-center">
-			      			<div class="col-sm-12 col-md-12 form-group" >
+			      			<div class="col-sm-3 col-md-3 form-group" >
+				        		<label for="" class="control-label">Tipo de usuario</label>
+				        		<select name="tipo_user" id="tipo_user" class="form-control">
+				        			<option value="null" selected="true">Seleccione una opcion</option>
+				        			<?php $tipo_user = get_data('tipo_user'); ?>
+				        			<?php foreach ($tipo_user as $key => $tipo) :?>
+				        				<option value="<?= $tipo[0]?>"><?= $tipo[1]?></option>
+				        			<?php endforeach; ?>
+				        		</select>
+				        	</div>
+			      			<div class="col-sm-9 col-md-9 form-group" >
 				        		<label for="" class="control-label">Direccion</label>
 				        		<textarea name="Direccion" id="Direccion" cols="10" rows="5" class="form-control"></textarea>
 				        	</div>

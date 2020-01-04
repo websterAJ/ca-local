@@ -32,15 +32,46 @@ function get_data_campo($campo,$table,$where)
 	    $data[] = $fila;
 	return $data;
 }
-function insert_data($table,$campos,$valor)
+function insert_data($table,$data)
     {
-       global $con;
-       $sql="INSERT INTO $table (`id_obj`,`descripcion`,`fecha_ini`,`fecha_fin`,`monto`,`statud`)VALUES(NULL,'".$descripcion."','".$monto."','".date('d/m/Y')."','".$fecha_final."','1')";
-       $consulta=mysqli_query($con,$sql);
-       if($consulta){
+       	global $con;
+       	$columnas=null;
+      	$datos=null;
+		foreach ($data as $key => $value) {
+	        $columnas.=$key.",";
+	        $datos.="'".$value."',";
+  		}
+    	$columnas = substr($columnas, 0, -1);
+  		$datos = substr($datos, 0, -1);
+		$sql = "INSERT INTO $table ($columnas) VALUES ($datos)";
+       	$consulta=mysqli_query($con,$sql);
+       	if($consulta){
           return true;
-       }else{
+       	}else{
           return false;
-       }
+       	}
     }
+function delete_user($id)
+{
+	global $con;
+	$sql ="SELECT * FROM usuarios WHERE id_user='$id'";
+	$respuesta = mysqli_query($con, $sql);
+	$fila = $respuesta->fetch_row();
+	if (isset($fila)) {
+		$sql="DELETE FROM `usuarios` WHERE `usuarios`.`id_user` = $id";
+		$respuesta = mysqli_query($con, $sql);
+		if ($respuesta) {
+			$sql="DELETE FROM `data_user` WHERE `data_user`.`id_data_user` = $fila[5]";
+			$respuesta = mysqli_query($con, $sql);
+			if ($respuesta) {
+				return true;
+			}else{
+				return false;
+			}
+		}
+	}
+	
+	
+
+}
 ?>
