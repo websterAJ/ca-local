@@ -10,17 +10,17 @@ if (isset($_POST)) {
 	}
 	switch ($activador) {
 		case 'trash_btn':
-			if (delete_user($_POST['id_user'])) :
+			if (delete('categorias',$_POST['id'])) :
 ?>
 				<script type="text/javascript">
-					alert("Usuario eliminado con exito")
-					location.href = "../user.php";
+					alert("Categoria eliminado con exito")
+					location.href = "../Categorias.php";
 				</script>
 <?php
 			endif;
 			break;
 		case 'edit_btn':
-			header('location:../editar.php?tb=usuarios&id='.$_POST['id_user']);
+			header('location:../editar.php?tb=categorias&id='.$_POST['id']);
 			break;
 	}
 }

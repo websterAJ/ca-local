@@ -2,17 +2,20 @@
 include 'header.php';
 include 'script/funciones_admin.php';
 conexion();
+
+if (isset($_POST)) :
+	$id=$_POST['id'];
+	$data=get_data_campo("`visitas`.`id_visitas`,`visitantes`.`nombre` as 'visitante', `personal`.`nombre`, `personal`.`apellido`, `destino`.`destino`,`visitas`.`valides`",'`visitas`, `visitantes`, `destino`, `personal`','`visitas`.`id_visitante`=`visitantes`.`id_visitante` AND `visitas`.`id_per`=`personal`.`id_per` AND `visitas`.`id_destino`=`destino`.`id_destino` AND `visitas`.`id_visitas`='.$id);
 ?>
 	<section class="panel">
 		<article class="panel-heading">
-			<h1 class="page-header">Formulario de registro de Visitante</h1>
+			<h1 class="page-header">Detalle de visita</h1>
 		</article>
-		<form action="script/registro_visita.php" method="POST">
 			<article class="panel-body row text-center">
 				<h3 class="sub-header">Informacion del Visitante</h3>
 				<article class="col-sm-3 col-md-3 form-group">
 					<label for="" class="control-label">Categoria</label>
-					<select name="categorias_vist" id="categorias_vist" class="form-control">
+					<select name="categorias" id="categorias" class="form-control">
 						<?php $categorias = get_data('categorias'); ?>
 						<option value="null">Seleccione una opcion</option>
 	        			<?php foreach ($categorias as $key => $cat) :?>
@@ -40,7 +43,7 @@ conexion();
 				<h3 class="sub-header">Informacion del Anfritión</h3>
 				<article class="col-sm-4 col-md-4 form-group">
 					<label for="" class="control-label">Categoria</label>
-					<select name="categorias_emp" id="categorias_emp" class="form-control">
+					<select name="categorias" id="categorias" class="form-control">
 						<?php $categorias = get_data('categorias'); ?>
 						<option value="null">Seleccione una opcion</option>
 	        			<?php foreach ($categorias as $key => $cat) :?>
@@ -88,39 +91,8 @@ conexion();
 					<input type="date" name="validades" id="validades" class="form-control" min="<?php echo date('Y').'-'.date('m').'-'.$dia?>">
 				</article>
 			</article>
-			<article class="panel-footer text-center ">
-	  			<button type="submit" class="btn btn-primary">
-	  				<span data-feather="send"></span>
-	      		</button>
-	      		<button type="reset" class="btn btn-primary">
-	      			<span data-feather="refresh-cw"></span>
-	      		</button>
-			</article>
-		</form>
 	</section>
-	<script type="text/javascript">
-		$(function() {
-			$("#ci").autocomplete({
-				source: "script/ajaxVisitante.php",
-				minLength: 2,
-				select: function(event, ui) {
-					event.preventDefault();
-					$("#ci").val(ui.item.cedula);
-					$("#nombre").val(ui.item.nombre);
-					$("#origen").val(ui.item.origen);
-					$("#id_visitante").val(ui.item.id_visitante);		
-				 }
-			});
-			$("#ci_emp").autocomplete({
-				source: "script/ajaxEmpleado.php",
-				minLength: 2,
-				select: function(event, ui) {
-					event.preventDefault();
-					$("#ci_emp").val(ui.item.cedula);
-					$("#id_per").val(ui.item.id_per);
-					$("#empleado").val(ui.item.nombre);					
-				 }
-			});
-		});
-	</script>
-<?php include 'footer.php'; ?>
+<?php 
+endif;
+include 'footer.php'; 
+?>

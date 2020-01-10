@@ -3,10 +3,20 @@
 function get_data($table)
 {
 	global $con;
-	$sql ="SELECT * FROM  $table LIMIT 10 ";
+	$sql ="SELECT * FROM  `$table`";
 	$respuesta = mysqli_query($con, $sql);
 	$data = array();
 	while ($fila = $respuesta->fetch_row())
+	    $data[] = $fila;
+	return $data;
+}
+function get_data_ajax($table)
+{
+	global $con;
+	$sql ="SELECT * FROM  `$table`";
+	$respuesta = mysqli_query($con, $sql);
+	$data = array();
+	while ($fila = $respuesta->fetch_assoc())
 	    $data[] = $fila;
 	return $data;
 }
@@ -14,11 +24,18 @@ function get_data($table)
 function get_data_id($table,$where)
 {
 	global $con;
-	$sql ="SELECT FROM $table WHERE $where";
+	$sql ="SELECT * FROM $table WHERE $where";
 	$respuesta = mysqli_query($con, $sql);
-	$respuestas_array = array();
-	while ($fila = $respuesta->fetch_row())
-	    $data[] = $fila;
+	$data = array();
+	$respuesta =$respuesta->fetch_assoc();
+	if ($respuesta!=NULL) {
+		foreach ($respuesta->fetch_assoc() as $key => $value) {
+			$data[$key] = $value;
+		}
+	}else{
+		$data="";
+	}
+	
 	return $data;
 }
 
@@ -51,6 +68,39 @@ function insert_data($table,$data)
           return false;
        	}
     }
+function delete($table,$data)
+{
+	global $con;
+	$columnas=null;
+    $datos=null;
+	foreach ($data as $key => $value) {
+        $columnas=$key;
+        $datos.="'".$value."'";
+	}
+	$sql="DELETE FROM `$table` WHERE `$table`.`$columnas` = $datos";
+	$respuesta = mysqli_query($con, $sql);
+	if ($respuesta) {
+		return true;
+	}else{
+		return false;
+	}
+}
+function update($table,$data,$where)
+{
+	global $con;
+	$valores=null;
+	foreach ($data as $key => $value) {
+	    $valores .="`$key`='".$value."',";
+    }      	
+	$valores = substr($valores,0,strlen($valores)-1);
+	$sql = "UPDATE `$table` SET $valores WHERE $where;";    
+	$respuesta = mysqli_query($con, $sql);
+	if ($respuesta) {
+		return true;
+	}else{
+		return false;
+	}
+}
 function delete_user($id)
 {
 	global $con;
@@ -70,8 +120,5 @@ function delete_user($id)
 			}
 		}
 	}
-	
-	
-
 }
 ?>

@@ -17,42 +17,38 @@
               Permisos
             </a>
           </li>
-          <li>
-            <a href="<?= _BASE_URL_?>Reportes.php">
-              <span data-feather="file-text"></span>
-              Reporte
-            </a>
-          </li>
         </ul>
-        <ul class="nav nav-sidebar">
-          <li>
-            <a href="<?= _BASE_URL_?>Categorias.php">
-              <span data-feather="list"></span>
-              Categorias
-            </a>
-          </li>
-           <li>
-            <a href="<?= _BASE_URL_?>Destinos.php">
-              <span data-feather="flag"></span>
-              Destinos
-            </a>
-          </li>
-          <li>
-            <a href="<?= _BASE_URL_?>Departamento.php">
-              <span class="depart"></span>
-              Departamento
-            </a>
-          </li>
-          <li>
-            <a href="<?= _BASE_URL_?>Personal.php">
-              <span data-feather="user"></span>
-              Personal
-            </a>
-          </li>
-          <li>
-            <a href="<?= _BASE_URL_?>user.php">
-              <span data-feather="user"></span>
-              Usuarios
-            </a>
-          </li>
-        </ul>
+        <?php if ($_SESSION['tipo_user'] == 1 || $_SESSION['tipo_user'] == 2 ) : ?>
+          <ul class="nav nav-sidebar">
+            <li>
+              <a href="<?= _BASE_URL_?>Categorias.php">
+                <span data-feather="list"></span>
+                Categorias
+              </a>
+            </li>
+             <li>
+              <a href="<?= _BASE_URL_?>Destinos.php">
+                <span data-feather="flag"></span>
+                Destinos
+              </a>
+            </li>
+            <li>
+              <a href="<?= _BASE_URL_?>Departamento.php">
+                <span class="depart"></span>
+                Departamento
+              </a>
+            </li>
+            <li>
+              <a href="<?= _BASE_URL_?>Personal.php">
+                <span data-feather="user"></span>
+                Personal
+              </a>
+            </li>
+            <li>
+              <a href="<?= _BASE_URL_?>user.php">
+                <span data-feather="user"></span>
+                Usuarios
+              </a>
+            </li>
+          </ul>
+        <?php endif; ?>

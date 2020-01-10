@@ -1,4 +1,7 @@
 <?php 
+/**
+ * Archivo encargado de realizar las conexion a la base de datos
+ */
 	require 'config.php';
 	$con=null;
 	function conexion()

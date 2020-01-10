@@ -8,19 +8,20 @@ if (isset($_POST)) {
 	}elseif (isset($_POST['edit_btn'])) {
 		$activador = 'edit_btn';
 	}
+	$array_data['id_destino']=$_POST['id_destino'];
 	switch ($activador) {
 		case 'trash_btn':
-			if (delete_user($_POST['id_user'])) :
+			if (delete('destino',$array_data)) :
 ?>
 				<script type="text/javascript">
-					alert("Usuario eliminado con exito")
-					location.href = "../user.php";
+					alert("Destino eliminado con exito")
+					location.href = "../Destinos.php";
 				</script>
 <?php
 			endif;
 			break;
 		case 'edit_btn':
-			header('location:../editar.php?tb=usuarios&id='.$_POST['id_user']);
+			header('location:../editar.php?tb=destino&id='.$_POST['id_destino']);
 			break;
 	}
 }

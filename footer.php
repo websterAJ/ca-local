@@ -2,8 +2,6 @@
     		</div>
     	</div>
     </div>
-    <script src="<?= _BASE_URL_?>js/jquery-3.4.0.min.js"></script>
-    <script>window.jQuery || document.write('<script src="<?= _BASE_URL_?>js/jquery-3.4.0.min.js"><\/script>')</script>
     <script src="<?= _BASE_URL_?>js/bootstrap.min.js"></script>
     <script src="<?= _BASE_URL_?>js/dropdown.js"></script>
     <script src="<?= _BASE_URL_?>js/popover.js"></script>

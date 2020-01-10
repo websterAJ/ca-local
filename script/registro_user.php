@@ -12,20 +12,20 @@ if (conexion()) :
 			</script>
 <?php
 		else:
-			$array_data_user["nombre"]=$data["Nombre"];
-			$array_data_user["apellido"]=$data["Apellido"];
-			$array_data_user["correo"]=$data["Correo"];
-			$array_data_user["telefono"]=$data["Telefono"];
-			$array_data_user["sexo"]=$data["Sexo"];
-			$array_data_user["direccion"]=$data["Direccion"];
+			$array_data_user["nombre"]=filter_var($data["Nombre"],FILTER_SANITIZE_STRING);
+			$array_data_user["apellido"]=filter_var($data["Apellido"],FILTER_SANITIZE_STRING);
+			$array_data_user["correo"]=filter_var($data["Correo"],FILTER_SANITIZE_STRING);
+			$array_data_user["telefono"]=filter_var($data["Telefono"],FILTER_SANITIZE_STRING);
+			$array_data_user["sexo"]=filter_var($data["Sexo"],FILTER_SANITIZE_STRING);
+			$array_data_user["direccion"]=filter_var($data["Direccion"],FILTER_SANITIZE_STRING);
 
 			if(insert_data('data_user',$array_data_user)):
 				$last_insert=mysqli_query($con,'SELECT LAST_INSERT_ID()');
 				$id_data_user=$last_insert->fetch_row();
-				$array_user["name_user"]=$data["Usuario"];
-				$array_user["pass_user"]=password_hash($data["pass_1"], PASSWORD_DEFAULT);
-				$array_user["forgot_pass"]=$data["pass_1"];
-				$array_user["id_tipo_user"]=$data["tipo_user"];
+				$array_user["name_user"]=filter_var($data["Usuario"],FILTER_SANITIZE_STRING);
+				$array_user["pass_user"]=password_hash(filter_var($data["pass_1"],FILTER_SANITIZE_STRING), PASSWORD_DEFAULT);
+				$array_user["forgot_pass"]=filter_var($data["pass_1"],FILTER_SANITIZE_STRING);
+				$array_user["id_tipo_user"]=filter_var($data["tipo_user"],FILTER_SANITIZE_STRING);
 			 	$array_user["statud_user"]=1;
 			 	$array_user["id_data_user"]=$id_data_user[0];
 				if (insert_data('usuarios',$array_user)) :

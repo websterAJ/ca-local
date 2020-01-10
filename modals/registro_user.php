@@ -51,7 +51,7 @@
 			      			<div class="col-sm-3 col-md-3 form-group" >
 				        		<label for="" class="control-label">Tipo de usuario</label>
 				        		<select name="tipo_user" id="tipo_user" class="form-control">
-				        			<option value="null" selected="true">Seleccione una opcion</option>
+				        			<option value="" selected="true">Seleccione una opcion</option>
 				        			<?php $tipo_user = get_data('tipo_user'); ?>
 				        			<?php foreach ($tipo_user as $key => $tipo) :?>
 				        				<option value="<?= $tipo[0]?>"><?= $tipo[1]?></option>
