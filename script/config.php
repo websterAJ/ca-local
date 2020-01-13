@@ -4,7 +4,7 @@
  * de conexion a la base de datos
  */
 	// url global del sistema
-	define('_BASE_URL_', 'http://' . $_SERVER['HTTP_HOST'] . '/ca-local_final/');
+	define('_BASE_URL_', 'http://' . $_SERVER['HTTP_HOST'] . '/ca-local/');
 
 	// constantes de conexion a la base de datos
 	define('SERVER','localhost'); 
