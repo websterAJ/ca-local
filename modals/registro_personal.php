@@ -18,11 +18,15 @@
 				        	</div>
 			      		</div>
 			      		<div class="row text-center">
-			      			<div class="col-sm-6 col-md-6 form-group">
+			      			<div class="col-sm-4 col-md-4 form-group">
 				        		<label for="" class="control-label">Correo</label>
 				        		<input type="text" id="correo" name="correo" class="form-control">
 				        	</div>
-				        	<div class="col-sm-6 col-md-6 form-group">
+							<div class="col-sm-4 col-md-4 form-group">
+				        		<label for="" class="control-label">Cedula</label>
+				        		<input type="text" id="cedula" name="cedula" class="form-control">
+				        	</div>
+				        	<div class="col-sm-4 col-md-4 form-group">
 				        		<label for="" class="control-label">Telefono</label>
 				        		<input type="text" id="telefono" name="telefono" class="form-control">
 				        	</div>
