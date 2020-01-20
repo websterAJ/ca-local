@@ -49,6 +49,17 @@ function get_data_campo($campo,$table,$where)
 	    $data[] = $fila;
 	return $data;
 }
+
+function get_data_campo_assoc($campo,$table,$where)
+{
+	global $con;
+	$sql ="SELECT $campo FROM $table WHERE $where";
+	$respuesta = mysqli_query($con, $sql);
+	$data = array();
+	while ($fila = $respuesta->fetch_assoc())
+	    $data[] = $fila;
+	return $data;
+}
 function insert_data($table,$data)
     {
        	global $con;
